@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER.InsertarViewController">
+   <children>
+      <TextField fx:id="textNombre" layoutX="127.0" layoutY="50.0" />
+      <TextField fx:id="textEspecialidad" layoutX="127.0" layoutY="87.0" />
+      <TextField fx:id="textEmail" layoutX="127.0" layoutY="122.0" />
+      <TextField fx:id="textCiudad" layoutX="127.0" layoutY="159.0" />
+      <TextField fx:id="textAno" layoutX="127.0" layoutY="200.0" />
+      <TextField fx:id="textNotaMedia" layoutX="363.0" layoutY="50.0" />
+      <TextField fx:id="textCalle" layoutX="363.0" layoutY="87.0" />
+      <Label layoutX="20.0" layoutY="56.0" text="Nombre" AnchorPane.leftAnchor="25.0" />
+      <Label layoutX="20.0" layoutY="204.0" text="Año" AnchorPane.leftAnchor="25.0" />
+      <Label layoutX="20.0" layoutY="91.0" text="Especialidad" AnchorPane.leftAnchor="25.0" />
+      <Label layoutX="20.0" layoutY="126.0" text="E-mail" AnchorPane.leftAnchor="25.0" />
+      <Label layoutX="21.0" layoutY="163.0" text="Ciudad" AnchorPane.leftAnchor="25.0" />
+      <Label layoutX="293.0" layoutY="91.0" text="Calle" />
+      <Label layoutX="293.0" layoutY="54.0" text="Nota Media" />
+      <Button fx:id="btnInsertat" layoutX="412.0" layoutY="172.0" mnemonicParsing="false" onAction="#clickInsertar" text="Insertar" />
+      <Label layoutX="169.0" layoutY="22.0" text="REQUERIDO" />
+      <Label layoutX="409.0" layoutY="22.0" text="OPCIONAL" />
+      <TextField fx:id="textDni" layoutX="127.0" layoutY="240.0" />
+      <Label layoutX="21.0" layoutY="244.0" text="DNI" AnchorPane.leftAnchor="25.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="400.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER.MainViewController">
+   <children>
+      <TextArea fx:id="mainTextField" editable="false" layoutX="8.0" layoutY="172.0" prefHeight="220.0" prefWidth="580.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="100.0" />
+      <TextField fx:id="textKey" layoutY="43.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="8.0" />
+      <TextField fx:id="textValue" layoutX="115.0" layoutY="43.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="115.0" />
+      <Button fx:id="btnBuscar" layoutX="225.0" layoutY="43.0" mnemonicParsing="false" onAction="#clickBuscar" text="Buscar" />
+      <Button fx:id="btnBuscarTodos" layoutX="284.0" layoutY="43.0" mnemonicParsing="false" onAction="#clickBuscarTodos" text="BuscarTodos" />
+      <Button fx:id="btnInsertar" layoutX="404.0" layoutY="43.0" mnemonicParsing="false" onAction="#clickInsertar" text="Insertar" AnchorPane.rightAnchor="8.0" />
+      <Button fx:id="btnActualizar" layoutX="467.0" layoutY="43.0" mnemonicParsing="false" onAction="#clickActualizar" text="Actualizar" AnchorPane.rightAnchor="68.0" />
+      <Button fx:id="btnBorrar" layoutX="412.0" layoutY="43.0" mnemonicParsing="false" onAction="#clickBorrar" text="Borrar" AnchorPane.rightAnchor="140.0" />
+      <Label layoutX="44.0" layoutY="26.0" text="Key" />
+      <Label layoutX="151.0" layoutY="26.0" text="Value" />
+   </children>
+</AnchorPane>
