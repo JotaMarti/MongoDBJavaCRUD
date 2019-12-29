@@ -9,12 +9,16 @@ import MODEL.conectar;
 import MODEL.insertar;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -23,10 +27,10 @@ import javafx.scene.control.TextField;
  */
 public class InsertarViewController implements Initializable {
 
+    ObservableList<String> listaEspecialidad = FXCollections.observableArrayList("informatica", "comercio", "hosteleria", "enfermeria");
+
     @FXML
     private TextField textNombre;
-    @FXML
-    private TextField textEspecialidad;
     @FXML
     private TextField textEmail;
     @FXML
@@ -49,20 +53,25 @@ public class InsertarViewController implements Initializable {
     String dni;
     @FXML
     private TextField textDni;
-
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private ChoiceBox<String> cb;
+    
+    
+   
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       cb.getItems().add("informatica");
+       cb.getItems().add("comercio");
+       cb.getItems().add("enfermeria");
+       cb.getItems().add("hosteleria");
     }
 
     @FXML
     private void clickInsertar(ActionEvent event) {
 
         nombre = textNombre.getText();
-        especialidad = textEspecialidad.getText();
+        especialidad = (String) cb.getValue();
         email = textEmail.getText();
         ciudad = textCiudad.getText();
         año = textAno.getText();
@@ -85,5 +94,6 @@ public class InsertarViewController implements Initializable {
         }
 
     }
+
 
 }

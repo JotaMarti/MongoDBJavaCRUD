@@ -12,6 +12,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +22,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -66,19 +69,19 @@ public class MainViewController implements Initializable {
         // TO DO: Validar esto.
         key = textKey.getText();
         value = textValue.getText();
-        
+
         mainTextField.setText("");
         conectar myMongo = new conectar("instituto");
 
         myMongo.setCollection("estudiantes");
-        
+
         List<String> resultados = find.findOne(myMongo.getCollection(), key, value);
 
         for (int i = 0; i < resultados.size(); i++) {
             mainTextField.appendText(resultados.get(i) + "\n");
         }
-        
-        if(resultados.isEmpty()){
+
+        if (resultados.isEmpty()) {
             mainTextField.setText("NO ENCONTRADO");
         }
     }
@@ -97,12 +100,12 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void clickInsertar(ActionEvent event) {
-           try {
+        try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MongoCRUD.class.getResource("/VIEW/InsertarView.fxml"));
             // Cargo la ventana
             Pane ventana = (Pane) loader.load();
- 
+
             // Cargo el scene
             Scene scene = new Scene(ventana);
             Stage insertstage = new Stage();
