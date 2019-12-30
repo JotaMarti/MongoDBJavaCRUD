@@ -4,22 +4,10 @@ package MODEL;
 
 public class textos {
     
-    private static final String error = "ERROR!";
-    private static final String todoOk = "Todo ok!";
-    private static final String alumnoBorradoOk = "El alumno se ha borrado correctamente";
-    private static final String alumnoBorradoNok = "No se ha podido borrar el alumno";
-    
-    
-    public static String getError(){
-        return error;
-    }
-    public static String getTodoOk(){
-        return todoOk;
-    }
-    public static String getAlumnoBorradoOk(){
-        return alumnoBorradoOk;
-    }
-    public static String getAlumnoBorradoNok(){
-        return alumnoBorradoNok;
-    }
+    public static final String ERROR = "ERROR!";
+    public static final String TODOOK = "Todo ok!";
+    public static final String ALUMNOBORRADOOK = "El alumno se ha borrado correctamente";
+    public static final String ALUMNOBORRADONOK = "No se ha podido borrar el alumno";
+    public static final String ERRORDNI = "Por favor revise el formato de el DNI introducido: \"12345678z\"";
+    public static final String ERRORSERVIDOR = "Datos del servidor erroneos";
 }

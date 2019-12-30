@@ -14,9 +14,9 @@ public class borrar {
     public static void borrarUno(String k, String v, MongoCollection col){
         
         if(col.deleteOne(eq(k, v)).getDeletedCount()>=1){
-            alertas.alertaInfo(textos.getAlumnoBorradoOk());
+            alertas.alertaInfo(textos.ALUMNOBORRADOOK);
         } else {
-            alertas.alertaError(textos.getAlumnoBorradoNok());
+            alertas.alertaError(textos.ALUMNOBORRADONOK);
         }
         
         

@@ -10,14 +10,14 @@ public class actualizar {
 
         try {
             if (col.updateOne(eq(k, v), set(kToUpd, vToUpd)).getModifiedCount() >= 1) {
-                alertas.alertaInfo(textos.getTodoOk());
+                alertas.alertaInfo(textos.TODOOK);
             } else {
-                alertas.alertaError(textos.getError());
+                alertas.alertaError(textos.ERROR);
             }
         } catch (com.mongodb.MongoWriteException e) {
-            alertas.alertaError(textos.getError());
+            alertas.alertaError(textos.ERROR);
         } catch (Exception e){
-            alertas.alertaError(textos.getError());
+            alertas.alertaError(textos.ERROR);
             System.out.println(e);
         }
 

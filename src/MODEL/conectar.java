@@ -22,9 +22,8 @@ public class conectar {
             mongoClient = MongoClients.create(uri);
             mongoDatabase = mongoClient.getDatabase(database);
             setCollection(collection);
-            System.out.println("Conexión correcta");
         } catch (java.lang.IllegalArgumentException e) {
-            System.out.println("Datos del servidor erroneos");
+            alertas.alertaError(textos.ERRORSERVIDOR);
         } catch (Exception e) {
             System.out.println(e);
         }
