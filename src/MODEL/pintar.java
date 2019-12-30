@@ -17,7 +17,23 @@ public class pintar {
         }
     }
     
+    
     public static void pintarMensaje(TextArea ta, String s){
         ta.setText(s);
     }
+    
+    public static void refrescaPantallaView(TextArea ta, List<String> resultados){
+        
+        
+        
+        
+        ta.setText("");
+        
+        for (int i = 0; i < resultados.size(); i++) {
+            ta.appendText(resultados.get(i) + "\n");
+        }
+    }
+    
+    
+    
 }

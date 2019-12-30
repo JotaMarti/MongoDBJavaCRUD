@@ -25,7 +25,7 @@ public class find {
         return resultados;
     }
 
-    public static void findAll(TextArea ta) {
+    public static List<String> findAll(TextArea ta) {
 
         conectar myMongo = new conectar();
         
@@ -42,5 +42,6 @@ public class find {
         }
         
         pintar.refrescaPantalla(ta, resultados);
+        return resultados;
     }
 }
