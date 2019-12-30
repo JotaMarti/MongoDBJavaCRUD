@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package MODEL;
 
 import com.mongodb.client.MongoClient;
@@ -16,11 +12,16 @@ public class conectar {
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;
     MongoCollection colleccion;
+    String uri = "mongodb+srv://UsuarioInstituto:PassInsti.19@cluster0-wxmzm.mongodb.net/test?retryWrites=true&w=majority";
+    String database = "instituto";
+    String collection = "estudiantes";
 
-    public conectar(String bd) {
+    public conectar() {
         try {
-            mongoClient = MongoClients.create("mongodb+srv://UsuarioInstituto:PassInsti.19@cluster0-wxmzm.mongodb.net/test?retryWrites=true&w=majority");
-            mongoDatabase = mongoClient.getDatabase(bd);
+            
+            mongoClient = MongoClients.create(uri);
+            mongoDatabase = mongoClient.getDatabase(database);
+            setCollection(collection);
             System.out.println("Conexión correcta");
         } catch (java.lang.IllegalArgumentException e) {
             System.out.println("Datos del servidor erroneos");

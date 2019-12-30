@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="CONTROLLER.UpdateViewController">
+   <children>
+      <Label layoutX="93.0" layoutY="39.0" text="Selecciona el alumno que quieres modificar" />
+      <TextField fx:id="textDni" layoutX="126.0" layoutY="94.0" promptText="&quot;12345678z&quot;" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="125.0" />
+      <Label layoutX="186.0" layoutY="70.0" text="DNI" />
+      <Label layoutX="87.0" layoutY="136.0" text="Selecciona que atributo quieres modificar" />
+      <TextField fx:id="textKeyToUpd" layoutX="19.0" layoutY="175.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="180.0" />
+      <TextField fx:id="textNewValue" layoutX="215.0" layoutY="175.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="180.0" />
+      <Button fx:id="btnAct" layoutX="171.0" layoutY="256.0" mnemonicParsing="false" onAction="#clickBtnAct" text="Actualizar" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" />
+      <Label layoutX="93.0" layoutY="163.0" text="Atributo" />
+      <Label layoutX="253.0" layoutY="163.0" text="Nuevo valor" />
+   </children>
+</AnchorPane>

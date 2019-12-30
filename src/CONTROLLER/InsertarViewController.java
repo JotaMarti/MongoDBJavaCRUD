@@ -86,9 +86,7 @@ public class InsertarViewController implements Initializable {
             alert.setContentText("Por favor, rellena los campos obligatorios correctamente.\n");
             alert.showAndWait();
         } else {
-            conectar myMongo2 = new conectar("instituto");
-
-            myMongo2.setCollection("estudiantes");
+            conectar myMongo2 = new conectar();
 
             insertar.insertaUno(nombre, especialidad, email, ciudad, año, notaMedia, calle, dni, myMongo2.getCollection());
         }

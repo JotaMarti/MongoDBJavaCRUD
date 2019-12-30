@@ -6,11 +6,10 @@ import com.mongodb.client.MongoCursor;
 import static com.mongodb.client.model.Filters.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.TextArea;
 import org.bson.Document;
 
 public class find {
-    
-    
 
     public static List<String> findOne(MongoCollection col, String k, String v) {
         List<String> resultados = new ArrayList<>();
@@ -22,11 +21,16 @@ public class find {
         };
 
         col.find(eq(k, v)).forEach(printBlock);
-        
+
         return resultados;
     }
 
-    public static List<String> findAll(MongoCollection col) {
+    public static void findAll(TextArea ta) {
+
+        conectar myMongo = new conectar();
+        
+        MongoCollection col = myMongo.getCollection();
+        
         List<String> resultados = new ArrayList<>();
         MongoCursor<Document> cursor = col.find().iterator();
         try {
@@ -36,6 +40,7 @@ public class find {
         } finally {
             cursor.close();
         }
-        return resultados;
+        
+        pintar.refrescaPantalla(ta, resultados);
     }
 }

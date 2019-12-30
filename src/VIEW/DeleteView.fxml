@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="CONTROLLER.DeleteViewController">
+   <children>
+      <Label layoutX="53.0" layoutY="34.0" text="Por favor, inserte el DNI de el alumno que quiera borrar" />
+      <TextField fx:id="textDniBorrar" layoutX="126.0" layoutY="86.0" promptText="&quot;12345678z&quot;" />
+      <Button fx:id="btnBorrar" layoutX="174.0" layoutY="145.0" mnemonicParsing="false" onAction="#clickBorrar" text="Borrar" />
+   </children>
+</AnchorPane>
