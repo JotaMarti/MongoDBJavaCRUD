@@ -1,7 +1,6 @@
 package MODEL;
 
 import com.mongodb.client.MongoCollection;
-import javafx.scene.control.Alert;
 import org.bson.Document;
 
 public class insertar {
@@ -17,7 +16,7 @@ public class insertar {
                         .append("email", email);
 
                 col.insertOne(document);
-                alert();
+                alertas.alertaInfo(textos.ALUMNOINSERTADOK);
 
             } else if (nota.isEmpty()) {
                 Document document = new Document("nombre", nom)
@@ -29,7 +28,7 @@ public class insertar {
                         .append("email", email);
 
                 col.insertOne(document);
-                alert();
+                alertas.alertaInfo(textos.ALUMNOINSERTADOK);
             } else if (calle.isEmpty()) {
                 Document document = new Document("nombre", nom)
                         .append("dni", dni)
@@ -40,7 +39,7 @@ public class insertar {
                         .append("notaMedia", Double.parseDouble(nota));
 
                 col.insertOne(document);
-                alert();
+                alertas.alertaInfo(textos.ALUMNOINSERTADOK);
             } else {
                 Document document = new Document("nombre", nom)
                         .append("dni", dni)
@@ -52,34 +51,17 @@ public class insertar {
                         .append("notaMedia", Double.parseDouble(nota));
 
                 col.insertOne(document);
-                alert();
+                alertas.alertaInfo(textos.ALUMNOINSERTADOK);
             }
         } catch (com.mongodb.MongoWriteException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Por favor, revisa los campos Año o DNI\n");
-            alert.showAndWait();
-            System.out.println(e);
+            alertas.alertaError(textos.REVISAYEARDNI);
         } catch (java.lang.NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Por favor, inserta un numero en el campo año y/o nota media\n");
-            alert.showAndWait();
+           alertas.alertaError(textos.REVISAYEARNOTA);
             System.out.println(e);
         } catch (Exception e) {
             System.out.println(e);
         }
 
-    }
-
-    private static void alert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Info");
-        alert.setContentText("Alumno insertado correctamente!");
-        alert.showAndWait();
     }
 
 }

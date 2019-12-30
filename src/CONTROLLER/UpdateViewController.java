@@ -45,7 +45,7 @@ public class UpdateViewController implements Initializable {
             
             conectar myMongo = new conectar();
 
-            actualizar.actualizarUno("dni", dni, key, newValue, myMongo.getCollection());
+            actualizar.actualizarUno(textos.PRIMARYKEY, dni, key, newValue, myMongo.getCollection());
             
         } else {
             
@@ -53,9 +53,6 @@ public class UpdateViewController implements Initializable {
             
         }
         
-        
-        
-        //find.findAll(mainTextField);
     }
     
 }

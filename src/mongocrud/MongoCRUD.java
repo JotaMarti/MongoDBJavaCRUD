@@ -2,6 +2,8 @@
 package mongocrud;
 
 
+import MODEL.textos;
+import MODEL.ventanas;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,23 +15,8 @@ public class MongoCRUD extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MongoCRUD.class.getResource("/VIEW/MainView.fxml"));
-            // Cargo la ventana
-            Pane ventana = (Pane) loader.load();
-
-            // Cargo el scene
-            Scene scene = new Scene(ventana);
-
-            // Seteo la scene y la muestro
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            primaryStage.setTitle("MongoDB CRUD by JotaMarti");
-            primaryStage.setResizable(false);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        
+        ventanas ventanaInsertar = new ventanas(textos.VENTANAMAIN, textos.VENTANATITULODEFECTO);
 
     }
 

@@ -5,7 +5,6 @@ import MODEL.alertas;
 import MODEL.borrar;
 import MODEL.check;
 import MODEL.conectar;
-import MODEL.find;
 import MODEL.textos;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +21,7 @@ public class DeleteViewController implements Initializable {
     private TextField textDniBorrar;
     @FXML
     private Button btnBorrar;
-    String dni;
+    private String dni;
 
     
     @Override
@@ -39,7 +38,7 @@ public class DeleteViewController implements Initializable {
             
             conectar myMongo = new conectar();
 
-            borrar.borrarUno("dni", dni, myMongo.getCollection());
+            borrar.borrarUno(textos.PRIMARYKEY, dni, myMongo.getCollection());
             
         } else {
             

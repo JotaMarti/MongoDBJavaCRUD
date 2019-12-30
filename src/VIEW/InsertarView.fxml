@@ -15,7 +15,7 @@
       <TextField fx:id="textNotaMedia" layoutX="363.0" layoutY="50.0" />
       <TextField fx:id="textCalle" layoutX="363.0" layoutY="87.0" />
       <Label layoutX="20.0" layoutY="56.0" text="Nombre" AnchorPane.leftAnchor="25.0" />
-      <Label layoutX="20.0" layoutY="204.0" text="Año" AnchorPane.leftAnchor="25.0" />
+      <Label layoutX="20.0" layoutY="204.0" text="Año Matricula" AnchorPane.leftAnchor="25.0" />
       <Label layoutX="20.0" layoutY="91.0" text="Especialidad" AnchorPane.leftAnchor="25.0" />
       <Label layoutX="20.0" layoutY="126.0" text="E-mail" AnchorPane.leftAnchor="25.0" />
       <Label layoutX="21.0" layoutY="163.0" text="Ciudad" AnchorPane.leftAnchor="25.0" />

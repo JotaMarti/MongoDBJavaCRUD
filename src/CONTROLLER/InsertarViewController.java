@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CONTROLLER;
 
+import MODEL.alertas;
+import MODEL.check;
 import MODEL.conectar;
 import MODEL.insertar;
+import MODEL.textos;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -14,17 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
-/**
- * FXML Controller class
- *
- * @author JotaMarti
- */
 public class InsertarViewController implements Initializable {
 
     ObservableList<String> listaEspecialidad = FXCollections.observableArrayList("informatica", "comercio", "hosteleria", "enfermeria");
@@ -55,16 +46,13 @@ public class InsertarViewController implements Initializable {
     private TextField textDni;
     @FXML
     private ChoiceBox<String> cb;
-    
-    
-   
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       cb.getItems().add("informatica");
-       cb.getItems().add("comercio");
-       cb.getItems().add("enfermeria");
-       cb.getItems().add("hosteleria");
+        cb.getItems().add("informatica");
+        cb.getItems().add("comercio");
+        cb.getItems().add("enfermeria");
+        cb.getItems().add("hosteleria");
     }
 
     @FXML
@@ -80,11 +68,9 @@ public class InsertarViewController implements Initializable {
         dni = textDni.getText();
 
         if (nombre.isEmpty() || especialidad.isEmpty() || email.isEmpty() || ciudad.isEmpty() || año.isEmpty() || dni.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Por favor, rellena los campos obligatorios correctamente.\n");
-            alert.showAndWait();
+            alertas.alertaError(textos.REVISACAMPOS);
+        } else if (!check.checkEmail(email)) {
+            alertas.alertaError(textos.REVISAEMAIL);
         } else {
             conectar myMongo2 = new conectar();
 
@@ -92,6 +78,5 @@ public class InsertarViewController implements Initializable {
         }
 
     }
-
 
 }

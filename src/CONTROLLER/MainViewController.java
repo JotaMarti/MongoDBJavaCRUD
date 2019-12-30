@@ -1,24 +1,21 @@
 package CONTROLLER;
 
-import MODEL.borrar;
+
 import MODEL.conectar;
 import MODEL.find;
 import MODEL.pintar;
-import java.io.IOException;
+import MODEL.textos;
+import MODEL.ventanas;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import mongocrud.MongoCRUD;
+
 
 public class MainViewController implements Initializable {
 
@@ -59,7 +56,7 @@ public class MainViewController implements Initializable {
         List<String> resultados = find.findOne(myMongo.getCollection(), key, value);
         //Si la lista que obtenemos de la busqueda esta vacia imprimimos NO ENCONTRADO, de lo contrario la imprimimos
         if (resultados.isEmpty()) {
-            pintar.pintarMensaje(mainTextField, "NO ENCONTRADO");
+            pintar.pintarMensaje(mainTextField, textos.NOENCONTRADO);
         } else {
             pintar.refrescaPantalla(mainTextField, resultados);
         }
@@ -74,65 +71,22 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void clickInsertar(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MongoCRUD.class.getResource("/VIEW/InsertarView.fxml"));
-            // Cargo la ventana
-            Pane ventana = (Pane) loader.load();
-
-            // Cargo el scene
-            Scene scene = new Scene(ventana);
-            Stage insertstage = new Stage();
-            // Seteo la scene y la muestro
-            insertstage.setScene(scene);
-            insertstage.show();
-            insertstage.setTitle("MongoDB CRUD by JotaMarti");
-            insertstage.setResizable(false);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        
+        ventanas ventanaInsertar = new ventanas(textos.VENTANAINSERTAR, textos.VENTANATITULODEFECTO);
+        
     }
 
     @FXML
     private void clickActualizar(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MongoCRUD.class.getResource("/VIEW/UpdateView.fxml"));
-            // Cargo la ventana
-            Pane ventana = (Pane) loader.load();
-
-            // Cargo el scene
-            Scene scene = new Scene(ventana);
-            Stage updStage = new Stage();
-            // Seteo la scene y la muestro
-            updStage.setScene(scene);
-            updStage.show();
-            updStage.setTitle("MongoDB CRUD by JotaMarti");
-            updStage.setResizable(false);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        
+        ventanas ventanaInsertar = new ventanas(textos.VENTANAACTUALIZAR, textos.VENTANATITULODEFECTO);
 
     }
 
     @FXML
     private void clickBorrar(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MongoCRUD.class.getResource("/VIEW/DeleteView.fxml"));
-            // Cargo la ventana
-            Pane ventana = (Pane) loader.load();
-
-            // Cargo el scene
-            Scene scene = new Scene(ventana);
-            Stage borrarStage = new Stage();
-            // Seteo la scene y la muestro
-            borrarStage.setScene(scene);
-            borrarStage.show();
-            borrarStage.setTitle("MongoDB CRUD by JotaMarti");
-            borrarStage.setResizable(false);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        
+        ventanas ventanaInsertar = new ventanas(textos.VENTANABORRAR, textos.VENTANATITULODEFECTO);
+        
     }
 }
