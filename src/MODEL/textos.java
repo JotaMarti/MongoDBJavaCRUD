@@ -22,4 +22,5 @@ public class textos {
     public static final String VENTANAMAIN = "MainView";
     public static final String VENTANATITULODEFECTO = "MongoDB CRUD by JotaMarti V1.0";
     public static final String PRIMARYKEY = "dni";
+    public static final String ERRORAUTH = "Error de autentificación, revisa usuario y contraseña";
 }

@@ -24,8 +24,10 @@ public class conectar {
             setCollection(collection);
         } catch (java.lang.IllegalArgumentException e) {
             alertas.alertaError(textos.ERRORSERVIDOR);
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (com.mongodb.MongoSecurityException e) {
+            alertas.alertaError(textos.ERRORAUTH);
+        } catch (com.mongodb.MongoCommandException e){
+            alertas.alertaError(textos.ERRORAUTH);
         }
 
     }

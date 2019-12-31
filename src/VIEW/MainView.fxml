@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="800.0" minHeight="400.0" minWidth="600.0" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER.MainViewController">
+<AnchorPane id="AnchorPane" maxHeight="800.0" minHeight="400.0" minWidth="600.0" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER.MainViewController">
    <children>
-      <TextArea fx:id="mainTextField" editable="false" layoutX="8.0" layoutY="172.0" prefHeight="236.0" prefWidth="584.0" AnchorPane.bottomAnchor="464.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="100.0" />
+      <TextArea fx:id="mainTextField" editable="false" layoutX="8.0" layoutY="487.0" prefHeight="65.0" prefWidth="784.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
       <TextField fx:id="textKey" layoutY="43.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="8.0" />
       <TextField fx:id="textValue" layoutX="115.0" layoutY="43.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="115.0" />
       <Button fx:id="btnBuscar" layoutX="232.0" layoutY="22.0" mnemonicParsing="false" onAction="#clickBuscar" text="Buscar" AnchorPane.leftAnchor="237.0" />
@@ -18,16 +18,16 @@
       <Button fx:id="btnBorrar" layoutX="407.0" layoutY="43.0" mnemonicParsing="false" onAction="#clickBorrar" text="Borrar" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="43.0" />
       <Label layoutX="44.0" layoutY="26.0" text="Key" />
       <Label layoutX="151.0" layoutY="26.0" text="Value" />
-      <TableView fx:id="tableView" layoutX="12.0" layoutY="407.0" prefHeight="369.0" prefWidth="776.0">
+      <TableView fx:id="tableView" layoutX="12.0" layoutY="105.0" prefHeight="369.0" prefWidth="776.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
         <columns>
-          <TableColumn fx:id="columnDni" editable="false" prefWidth="73.0" text="DNI" />
-          <TableColumn fx:id="columnNombre" prefWidth="86.0" text="Nombre" />
-            <TableColumn fx:id="columnEmail" prefWidth="101.0" text="Email" />
-            <TableColumn fx:id="columnEspecialidad" prefWidth="104.0" text="Especialidad" />
-            <TableColumn fx:id="columnYear" prefWidth="87.0" text="Año Mat." />
-            <TableColumn fx:id="columnCiudad" prefWidth="87.0" text="Ciudad" />
-            <TableColumn fx:id="columnCalle" minWidth="0.0" prefWidth="127.0" text="Calle" />
-            <TableColumn fx:id="columnNota" prefWidth="110.0" text="Nota Media" />
+          <TableColumn fx:id="columnDni" editable="false" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="DNI" />
+          <TableColumn fx:id="columnNombre" maxWidth="200.0" minWidth="120.0" prefWidth="120.0" text="Nombre" />
+            <TableColumn fx:id="columnEmail" maxWidth="200.0" minWidth="155.0" prefWidth="155.0" text="Email" />
+            <TableColumn fx:id="columnEspecialidad" maxWidth="80.0" minWidth="80.0" text="Especialidad" />
+            <TableColumn fx:id="columnYear" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Año Mat." />
+            <TableColumn fx:id="columnCiudad" maxWidth="87.0" minWidth="87.0" prefWidth="87.0" text="Ciudad" />
+            <TableColumn fx:id="columnCalle" maxWidth="200.0" minWidth="100.0" prefWidth="140.0" text="Calle" />
+            <TableColumn fx:id="columnNota" maxWidth="100.0" minWidth="50.0" text="Nota Media" />
         </columns>
       </TableView>
    </children>
