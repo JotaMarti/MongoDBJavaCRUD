@@ -31,7 +31,8 @@ public class find {
     public static void findOneTabla(TableView<estudiante> e, ObservableList<estudiante> ol, TableColumn[] tc, String k, String v) {
         estudiante[] array;
         conectar myMongo = new conectar();
-
+        int valueInt;
+        Double valueDouble;
         MongoCollection col = myMongo.getCollection();
 
         List<String> resultados = new ArrayList<>();
@@ -41,8 +42,22 @@ public class find {
                 resultados.add(document.toJson());
             }
         };
-
-        col.find(eq(k, v)).forEach(printBlock);
+        
+        if(k.equals("calle")){
+            col.find(eq("direccion.calle", v)).forEach(printBlock);
+        } else if (k.equals("ciudad")){
+            col.find(eq("direccion.ciudad", v)).forEach(printBlock);
+        } else if(k.equals("año")) {
+            valueInt = Integer.parseInt(v);
+            col.find(eq(k, valueInt)).forEach(printBlock);
+        } else if(k.equals("notaMedia")) {
+            valueDouble = Double.parseDouble(v);
+            col.find(eq(k, valueDouble)).forEach(printBlock);
+        } else {
+            col.find(eq(k, v)).forEach(printBlock);
+        }
+        
+        
 
         extract eResultados = new extract(resultados);
         array = eResultados.getArray();
@@ -69,7 +84,7 @@ public class find {
         pintar.refrescaPantalla(ta, resultados);
     }
 
-    public static void findAllTable(TableView<estudiante> e, ObservableList<estudiante> ol, TableColumn[] tc, TextArea ta) {
+    public static void findAllTable(TableView<estudiante> tableView, ObservableList<estudiante> ObservableList, TableColumn[] tableColumn, TextArea textArea) {
         estudiante[] array;
         conectar myMongo = new conectar();
 
@@ -88,8 +103,8 @@ public class find {
         extract eResultados = new extract(resultados);
         array = eResultados.getArray();
 
-        pintar.refrescaPantallaView(e, array, ol, tc);
-        pintar.refrescaPantalla(ta, resultados);
+        pintar.refrescaPantallaView(tableView, array, ObservableList, tableColumn);
+        pintar.refrescaPantalla(textArea, resultados);
 
     }
 }

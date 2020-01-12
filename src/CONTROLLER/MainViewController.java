@@ -1,16 +1,11 @@
 package CONTROLLER;
 
 import MODEL.TableUtils;
-import MODEL.alertas;
-import MODEL.conectar;
 import MODEL.estudiante;
-import MODEL.extract;
 import MODEL.find;
-import MODEL.pintar;
 import MODEL.textos;
 import MODEL.ventanas;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,8 +23,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MainViewController implements Initializable {
 
-    @FXML
-    private TextField textKey;
     @FXML
     private TextField textValue;
     @FXML
@@ -64,9 +58,12 @@ public class MainViewController implements Initializable {
     @FXML
     private TableColumn<estudiante, String> columnNota;
     public ObservableList<estudiante> lista = FXCollections.observableArrayList();
+    @FXML
+    private ChoiceBox<String> mainCb;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Inicializamos el TableView y el Choicebox principal
         columnDni.setCellValueFactory(new PropertyValueFactory<estudiante, String>("dni"));
         columnNombre.setCellValueFactory(new PropertyValueFactory<estudiante, String>("nombre"));
         columnEmail.setCellValueFactory(new PropertyValueFactory<estudiante, String>("email"));
@@ -77,12 +74,23 @@ public class MainViewController implements Initializable {
         columnNota.setCellValueFactory(new PropertyValueFactory<estudiante, String>("nota"));
         tableView.getSelectionModel().setCellSelectionEnabled(true);
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        // Añadimos un listener para poder copiar valores del tableview
         TableUtils.installCopyPasteHandler(tableView);
+        // Añadimos las opciones al choicebox
+        mainCb.getItems().add("nombre");
+        mainCb.getItems().add("dni");
+        mainCb.getItems().add("email");
+        mainCb.getItems().add("año");
+        mainCb.getItems().add("especialidad");
+        mainCb.getItems().add("notaMedia");
+        mainCb.getItems().add("calle");
+        mainCb.getItems().add("ciudad");
+
     }
 
     @FXML
     private void clickBuscar(ActionEvent event) {
-        key = textKey.getText();
+        key = (String) mainCb.getValue();
         value = textValue.getText();
         TableColumn[] arrayTablas = {columnDni, columnNombre, columnEmail, columnEspecialidad, columnYear, columnCiudad, columnCalle, columnNota};
         tableView.getItems().clear();
@@ -111,14 +119,14 @@ public class MainViewController implements Initializable {
     @FXML
     private void clickActualizar(ActionEvent event) {
 
-        ventanas ventanaInsertar = new ventanas(textos.VENTANAACTUALIZAR, textos.VENTANATITULODEFECTO);
+        ventanas ventanaActualizar = new ventanas(textos.VENTANAACTUALIZAR, textos.VENTANATITULODEFECTO);
 
     }
 
     @FXML
     private void clickBorrar(ActionEvent event) {
 
-        ventanas ventanaInsertar = new ventanas(textos.VENTANABORRAR, textos.VENTANATITULODEFECTO);
+        ventanas ventanaBorrar = new ventanas(textos.VENTANABORRAR, textos.VENTANATITULODEFECTO);
 
     }
 }

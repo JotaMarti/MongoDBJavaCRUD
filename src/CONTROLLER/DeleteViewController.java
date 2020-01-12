@@ -26,7 +26,7 @@ public class DeleteViewController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        textDniBorrar.setFocusTraversable(false);
     }
 
     @FXML

@@ -9,7 +9,6 @@
 <AnchorPane id="AnchorPane" maxHeight="800.0" minHeight="400.0" minWidth="600.0" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER.MainViewController">
    <children>
       <TextArea fx:id="mainTextField" editable="false" layoutX="8.0" layoutY="487.0" prefHeight="65.0" prefWidth="784.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
-      <TextField fx:id="textKey" layoutY="43.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="8.0" />
       <TextField fx:id="textValue" layoutX="115.0" layoutY="43.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="115.0" />
       <Button fx:id="btnBuscar" layoutX="232.0" layoutY="22.0" mnemonicParsing="false" onAction="#clickBuscar" text="Buscar" AnchorPane.leftAnchor="237.0" />
       <Button fx:id="btnBuscarTodos" layoutX="215.0" layoutY="56.0" mnemonicParsing="false" onAction="#clickBuscarTodos" text="Buscar todos" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="62.0" />
@@ -30,5 +29,6 @@
             <TableColumn fx:id="columnNota" maxWidth="100.0" minWidth="50.0" text="Nota Media" />
         </columns>
       </TableView>
+      <ChoiceBox fx:id="mainCb" layoutX="4.0" layoutY="43.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="8.0" />
    </children>
 </AnchorPane>

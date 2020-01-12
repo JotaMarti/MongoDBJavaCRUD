@@ -1,6 +1,7 @@
 package MODEL;
 
 import java.io.IOException;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -20,7 +21,7 @@ public class ventanas {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MongoCRUD.class.getResource("/VIEW/" + n + ".fxml"));
+            loader.setLocation(MongoCRUD.class.getResource("/VIEW/" + fxmlName + ".fxml"));
             // Cargo la ventana
             Pane ventana = (Pane) loader.load();
 
@@ -30,9 +31,12 @@ public class ventanas {
             // Seteo la scene y la muestro
             stage.setScene(scene);
             stage.show();
-            stage.setTitle(v);
+            stage.setTitle(tituloVentana);
             stage.setResizable(false);
             stage.getIcons().add(new Image("/images/mongo.png"));
+            if(fxmlName.equals(textos.VENTANAMAIN)){
+                stage.setOnCloseRequest(e -> Platform.exit());
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

@@ -1,4 +1,3 @@
-
 package CONTROLLER;
 
 import MODEL.actualizar;
@@ -12,15 +11,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-
 
 public class UpdateViewController implements Initializable {
 
     @FXML
     private TextField textDni;
-    @FXML
-    private TextField textKeyToUpd;
     @FXML
     private TextField textNewValue;
     @FXML
@@ -28,31 +25,38 @@ public class UpdateViewController implements Initializable {
     String dni;
     String key;
     String newValue;
+    @FXML
+    private ChoiceBox<String> updCb;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        updCb.getItems().add("nombre");
+        updCb.getItems().add("especialidad");
+        updCb.getItems().add("notaMedia");
+        updCb.getItems().add("calle");
+        updCb.getItems().add("ciudad");
+        updCb.getItems().add("email");
+    }
 
     @FXML
     private void clickBtnAct(ActionEvent event) {
-        
+
         dni = textDni.getText();
-        key = textKeyToUpd.getText();
+        key = (String) updCb.getValue();
         newValue = textNewValue.getText();
-        
+
         if (check.checkDni(dni)) {
-            
+
             conectar myMongo = new conectar();
 
             actualizar.actualizarUno(textos.PRIMARYKEY, dni, key, newValue, myMongo.getCollection());
-            
+
         } else {
-            
+
             alertas.alertaError(textos.ERRORDNI);
-            
+
         }
-        
+
     }
-    
+
 }

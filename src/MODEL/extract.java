@@ -42,13 +42,13 @@ public class extract {
             if (jsonObj.has("notaMedia")) {
                 nota = Double.toString(jsonObj.getDouble("notaMedia"));
             } else {
-                nota = null;
+                nota = "N/A";
             }
             ciudad = direccion.getString("ciudad");
             if (direccion.has("calle")) {
                 calle = direccion.getString("calle");
             } else {
-                calle = null;
+                calle = "N/A";
             }
             
             array[i] = new estudiante(nombre, dni, year, especialidad, email, ciudad, nota, calle);

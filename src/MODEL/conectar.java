@@ -1,4 +1,3 @@
-
 package MODEL;
 
 import com.mongodb.client.MongoClient;
@@ -18,7 +17,7 @@ public class conectar {
 
     public conectar() {
         try {
-            
+
             mongoClient = MongoClients.create(uri);
             mongoDatabase = mongoClient.getDatabase(database);
             setCollection(collection);
@@ -26,27 +25,29 @@ public class conectar {
             alertas.alertaError(textos.ERRORSERVIDOR);
         } catch (com.mongodb.MongoSecurityException e) {
             alertas.alertaError(textos.ERRORAUTH);
-        } catch (com.mongodb.MongoCommandException e){
+        } catch (com.mongodb.MongoCommandException e) {
             alertas.alertaError(textos.ERRORAUTH);
+        } catch (com.mongodb.MongoSocketOpenException e){
+            System.out.println(e);
         }
 
     }
-    
-    public boolean setCollection(String c){
+
+    public boolean setCollection(String c) {
         colleccion = mongoDatabase.getCollection(c);
-        if(colleccion.countDocuments()==0){
+        if (colleccion.countDocuments() == 0) {
             return false;
         }
         return true;
     }
-    
-    public MongoCollection getCollection(){
+
+    public MongoCollection getCollection() {
         return colleccion;
     }
-    
-    public void listaColecciones(){
+
+    public void listaColecciones() {
         MongoIterable<String> it = mongoDatabase.listCollectionNames();
-        for(String s: it){
+        for (String s : it) {
             System.out.println(s);
         }
     }

@@ -24,7 +24,7 @@
       <Button fx:id="btnInsertat" layoutX="412.0" layoutY="172.0" mnemonicParsing="false" onAction="#clickInsertar" text="Insertar" />
       <Label layoutX="169.0" layoutY="22.0" text="REQUERIDO" />
       <Label layoutX="409.0" layoutY="22.0" text="OPCIONAL" />
-      <TextField fx:id="textDni" layoutX="127.0" layoutY="240.0" promptText="&quot;12345678A&quot;" />
+      <TextField fx:id="textDni" layoutX="127.0" layoutY="240.0" promptText="&quot;12345678z&quot;" />
       <Label layoutX="21.0" layoutY="244.0" text="DNI" AnchorPane.leftAnchor="25.0" />
       <ChoiceBox fx:id="cb" layoutX="127.0" layoutY="87.0" prefWidth="150.0" />
    </children>

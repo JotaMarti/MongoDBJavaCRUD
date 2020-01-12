@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 
 public class InsertarViewController implements Initializable {
 
-    ObservableList<String> listaEspecialidad = FXCollections.observableArrayList("informatica", "comercio", "hosteleria", "enfermeria");
+    //ObservableList<String> listaEspecialidad = FXCollections.observableArrayList("informatica", "comercio", "hosteleria", "enfermeria");
 
     @FXML
     private TextField textNombre;
@@ -66,6 +66,7 @@ public class InsertarViewController implements Initializable {
         notaMedia = textNotaMedia.getText();
         calle = textCalle.getText();
         dni = textDni.getText();
+        dni = dni.toLowerCase();
 
         if (nombre.isEmpty() || especialidad.isEmpty() || email.isEmpty() || ciudad.isEmpty() || año.isEmpty() || dni.isEmpty()) {
             alertas.alertaError(textos.REVISACAMPOS);

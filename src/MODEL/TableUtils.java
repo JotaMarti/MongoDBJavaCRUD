@@ -13,21 +13,13 @@ import javafx.scene.input.KeyEvent;
 
 public class TableUtils {
 
-    /**
-     * Install the keyboard handler: + CTRL + C = copy to clipboard
-     *
-     * @param table
-     */
     public static void installCopyPasteHandler(TableView<?> table) {
 
-        // install copy/paste keyboard handler
+        // Pone la tabla a la escucha
         table.setOnKeyPressed(new TableKeyEventHandler());
 
     }
 
-    /**
-     * Copy/Paste keyboard event handler. The handler uses the keyEvent's source for the clipboard data. The source must be of type TableView.
-     */
     public static class TableKeyEventHandler implements EventHandler<KeyEvent> {
 
         KeyCodeCombination copyKeyCodeCompination = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_ANY);
@@ -38,12 +30,12 @@ public class TableUtils {
 
                 if (keyEvent.getSource() instanceof TableView) {
 
-                    // copy to clipboard
+                    // Llama la funcion para copiar el valor seleccionado al portapapeles
                     copySelectionToClipboard((TableView<?>) keyEvent.getSource());
 
-                    System.out.println("Selection copied to clipboard");
+                    System.out.println("Copiado al portapapeles");
 
-                    // event is handled, consume it
+                    // Cuando usamos el evento lo consume
                     keyEvent.consume();
 
                 }
@@ -54,11 +46,6 @@ public class TableUtils {
 
     }
 
-    /**
-     * Get table selection and copy it to the clipboard.
-     *
-     * @param table
-     */
     public static void copySelectionToClipboard(TableView<?> table) {
 
         StringBuilder clipboardString = new StringBuilder();
@@ -74,7 +61,7 @@ public class TableUtils {
 
             Object cell = (Object) table.getColumns().get(col).getCellData(row);
 
-            // null-check: provide empty string for nulls
+            // null-check
             if (cell == null) {
                 cell = "";
             }
@@ -91,21 +78,21 @@ public class TableUtils {
 
             }
 
-            // create string from cell
+            // Crea el string de la celda
             String text = cell.toString();
 
-            // add new item to clipboard
+            // copia el texto al string builder
             clipboardString.append(text);
 
-            // remember previous
+            // recuerda el anterior
             prevRow = row;
         }
 
-        // create clipboard content
+        // crea el contenido del portapapeles
         final ClipboardContent clipboardContent = new ClipboardContent();
         clipboardContent.putString(clipboardString.toString());
 
-        // set clipboard content
+        // añade el texto al portapapeles
         Clipboard.getSystemClipboard().setContent(clipboardContent);
     }
 }
