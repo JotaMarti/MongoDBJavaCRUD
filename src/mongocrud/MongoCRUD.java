@@ -2,8 +2,8 @@
 package mongocrud;
 
 
-import MODEL.textos;
-import MODEL.ventanas;
+import MODEL.Textos;
+import MODEL.Ventanas;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -12,7 +12,7 @@ public class MongoCRUD extends Application {
     @Override
     public void start(Stage primaryStage) {
         
-        ventanas ventanaMain = new ventanas(textos.VENTANAMAIN, textos.VENTANATITULODEFECTO);
+        Ventanas ventanaMain = new Ventanas(Textos.VENTANAMAIN, Textos.VENTANATITULODEFECTO);
 
     }
 

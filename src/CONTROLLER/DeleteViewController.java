@@ -1,11 +1,11 @@
 
 package CONTROLLER;
 
-import MODEL.alertas;
-import MODEL.borrar;
-import MODEL.check;
-import MODEL.conectar;
-import MODEL.textos;
+import MODEL.Alertas;
+import MODEL.Borrar;
+import MODEL.Check;
+import MODEL.Conectar;
+import MODEL.Textos;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -34,15 +34,15 @@ public class DeleteViewController implements Initializable {
         
         dni = textDniBorrar.getText();
         
-        if (check.checkDni(dni)) {
+        if (Check.checkDni(dni)) {
             
-            conectar myMongo = new conectar();
+            Conectar myMongo = new Conectar();
 
-            borrar.borrarUno(textos.PRIMARYKEY, dni, myMongo.getCollection());
+            Borrar.borrarUno(Textos.PRIMARYKEY, dni, myMongo.getCollection());
             
         } else {
             
-            alertas.alertaError(textos.ERRORDNI);
+            Alertas.alertaError(Textos.ERRORDNI);
         }
 
         

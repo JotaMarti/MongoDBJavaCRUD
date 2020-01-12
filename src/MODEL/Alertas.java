@@ -2,7 +2,7 @@ package MODEL;
 
 import javafx.scene.control.Alert;
 
-public class alertas {
+public class Alertas {
 
     public static void alertaError(String s) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

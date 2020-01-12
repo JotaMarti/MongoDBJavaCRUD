@@ -1,10 +1,10 @@
 package CONTROLLER;
 
-import MODEL.actualizar;
-import MODEL.alertas;
-import MODEL.check;
-import MODEL.conectar;
-import MODEL.textos;
+import MODEL.Actualizar;
+import MODEL.Alertas;
+import MODEL.Check;
+import MODEL.Conectar;
+import MODEL.Textos;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -45,15 +45,15 @@ public class UpdateViewController implements Initializable {
         key = (String) updCb.getValue();
         newValue = textNewValue.getText();
 
-        if (check.checkDni(dni)) {
+        if (Check.checkDni(dni)) {
 
-            conectar myMongo = new conectar();
+            Conectar myMongo = new Conectar();
 
-            actualizar.actualizarUno(textos.PRIMARYKEY, dni, key, newValue, myMongo.getCollection());
+            Actualizar.actualizarUno(Textos.PRIMARYKEY, dni, key, newValue, myMongo.getCollection());
 
         } else {
 
-            alertas.alertaError(textos.ERRORDNI);
+            Alertas.alertaError(Textos.ERRORDNI);
 
         }
 

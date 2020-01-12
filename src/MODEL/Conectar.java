@@ -6,7 +6,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
 
-public class conectar {
+public class Conectar {
 
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;
@@ -15,18 +15,18 @@ public class conectar {
     String database = "instituto";
     String collection = "estudiantes";
 
-    public conectar() {
+    public Conectar() {
         try {
 
             mongoClient = MongoClients.create(uri);
             mongoDatabase = mongoClient.getDatabase(database);
             setCollection(collection);
         } catch (java.lang.IllegalArgumentException e) {
-            alertas.alertaError(textos.ERRORSERVIDOR);
+            Alertas.alertaError(Textos.ERRORSERVIDOR);
         } catch (com.mongodb.MongoSecurityException e) {
-            alertas.alertaError(textos.ERRORAUTH);
+            Alertas.alertaError(Textos.ERRORAUTH);
         } catch (com.mongodb.MongoCommandException e) {
-            alertas.alertaError(textos.ERRORAUTH);
+            Alertas.alertaError(Textos.ERRORAUTH);
         } catch (com.mongodb.MongoSocketOpenException e){
             System.out.println(e);
         }

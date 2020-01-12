@@ -1,10 +1,10 @@
 package CONTROLLER;
 
-import MODEL.alertas;
-import MODEL.check;
-import MODEL.conectar;
-import MODEL.insertar;
-import MODEL.textos;
+import MODEL.Alertas;
+import MODEL.Check;
+import MODEL.Conectar;
+import MODEL.Insertar;
+import MODEL.Textos;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -69,13 +69,13 @@ public class InsertarViewController implements Initializable {
         dni = dni.toLowerCase();
 
         if (nombre.isEmpty() || especialidad.isEmpty() || email.isEmpty() || ciudad.isEmpty() || año.isEmpty() || dni.isEmpty()) {
-            alertas.alertaError(textos.REVISACAMPOS);
-        } else if (!check.checkEmail(email)) {
-            alertas.alertaError(textos.REVISAEMAIL);
+            Alertas.alertaError(Textos.REVISACAMPOS);
+        } else if (!Check.checkEmail(email)) {
+            Alertas.alertaError(Textos.REVISAEMAIL);
         } else {
-            conectar myMongo2 = new conectar();
+            Conectar myMongo2 = new Conectar();
 
-            insertar.insertaUno(nombre, especialidad, email, ciudad, año, notaMedia, calle, dni, myMongo2.getCollection());
+            Insertar.insertaUno(nombre, especialidad, email, ciudad, año, notaMedia, calle, dni, myMongo2.getCollection());
         }
 
     }

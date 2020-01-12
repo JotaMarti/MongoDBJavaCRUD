@@ -1,10 +1,10 @@
 package CONTROLLER;
 
 import MODEL.TableUtils;
-import MODEL.estudiante;
-import MODEL.find;
-import MODEL.textos;
-import MODEL.ventanas;
+import MODEL.Estudiante;
+import MODEL.Find;
+import MODEL.Textos;
+import MODEL.Ventanas;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -40,38 +40,38 @@ public class MainViewController implements Initializable {
     private String key;
     private String value;
     @FXML
-    private TableView<estudiante> tableView;
+    private TableView<Estudiante> tableView;
     @FXML
-    private TableColumn<estudiante, String> columnDni;
+    private TableColumn<Estudiante, String> columnDni;
     @FXML
-    private TableColumn<estudiante, String> columnNombre;
+    private TableColumn<Estudiante, String> columnNombre;
     @FXML
-    private TableColumn<estudiante, String> columnEmail;
+    private TableColumn<Estudiante, String> columnEmail;
     @FXML
-    private TableColumn<estudiante, String> columnEspecialidad;
+    private TableColumn<Estudiante, String> columnEspecialidad;
     @FXML
-    private TableColumn<estudiante, String> columnYear;
+    private TableColumn<Estudiante, String> columnYear;
     @FXML
-    private TableColumn<estudiante, String> columnCiudad;
+    private TableColumn<Estudiante, String> columnCiudad;
     @FXML
-    private TableColumn<estudiante, String> columnCalle;
+    private TableColumn<Estudiante, String> columnCalle;
     @FXML
-    private TableColumn<estudiante, String> columnNota;
-    public ObservableList<estudiante> lista = FXCollections.observableArrayList();
+    private TableColumn<Estudiante, String> columnNota;
+    public ObservableList<Estudiante> lista = FXCollections.observableArrayList();
     @FXML
     private ChoiceBox<String> mainCb;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Inicializamos el TableView y el Choicebox principal
-        columnDni.setCellValueFactory(new PropertyValueFactory<estudiante, String>("dni"));
-        columnNombre.setCellValueFactory(new PropertyValueFactory<estudiante, String>("nombre"));
-        columnEmail.setCellValueFactory(new PropertyValueFactory<estudiante, String>("email"));
-        columnEspecialidad.setCellValueFactory(new PropertyValueFactory<estudiante, String>("especialidad"));
-        columnYear.setCellValueFactory(new PropertyValueFactory<estudiante, String>("year"));
-        columnCiudad.setCellValueFactory(new PropertyValueFactory<estudiante, String>("ciudad"));
-        columnCalle.setCellValueFactory(new PropertyValueFactory<estudiante, String>("calle"));
-        columnNota.setCellValueFactory(new PropertyValueFactory<estudiante, String>("nota"));
+        columnDni.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("dni"));
+        columnNombre.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("nombre"));
+        columnEmail.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("email"));
+        columnEspecialidad.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("especialidad"));
+        columnYear.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("year"));
+        columnCiudad.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("ciudad"));
+        columnCalle.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("calle"));
+        columnNota.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("nota"));
         tableView.getSelectionModel().setCellSelectionEnabled(true);
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         // Añadimos un listener para poder copiar valores del tableview
@@ -94,7 +94,7 @@ public class MainViewController implements Initializable {
         value = textValue.getText();
         TableColumn[] arrayTablas = {columnDni, columnNombre, columnEmail, columnEspecialidad, columnYear, columnCiudad, columnCalle, columnNota};
         tableView.getItems().clear();
-        find.findOneTabla(tableView, lista, arrayTablas, key, value);
+        Find.findOneTabla(tableView, lista, arrayTablas, key, value);
 
     }
 
@@ -105,28 +105,28 @@ public class MainViewController implements Initializable {
         //Creamos un array con las columnas para no tener que pasarlas una a una
         TableColumn[] arrayTablas = {columnDni, columnNombre, columnEmail, columnEspecialidad, columnYear, columnCiudad, columnCalle, columnNota};
         //Llamamos al metodo finall y le pasamos la tableview, la observable list y el array de las tablas
-        find.findAllTable(tableView, lista, arrayTablas, mainTextField);
+        Find.findAllTable(tableView, lista, arrayTablas, mainTextField);
 
     }
 
     @FXML
     private void clickInsertar(ActionEvent event) {
 
-        ventanas ventanaInsertar = new ventanas(textos.VENTANAINSERTAR, textos.VENTANATITULODEFECTO);
+        Ventanas ventanaInsertar = new Ventanas(Textos.VENTANAINSERTAR, Textos.VENTANATITULODEFECTO);
 
     }
 
     @FXML
     private void clickActualizar(ActionEvent event) {
 
-        ventanas ventanaActualizar = new ventanas(textos.VENTANAACTUALIZAR, textos.VENTANATITULODEFECTO);
+        Ventanas ventanaActualizar = new Ventanas(Textos.VENTANAACTUALIZAR, Textos.VENTANATITULODEFECTO);
 
     }
 
     @FXML
     private void clickBorrar(ActionEvent event) {
 
-        ventanas ventanaBorrar = new ventanas(textos.VENTANABORRAR, textos.VENTANATITULODEFECTO);
+        Ventanas ventanaBorrar = new Ventanas(Textos.VENTANABORRAR, Textos.VENTANATITULODEFECTO);
 
     }
 }

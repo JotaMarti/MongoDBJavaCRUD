@@ -2,7 +2,7 @@
 package MODEL;
 
 
-public class textos {
+public class Textos {
     
     public static final String ERROR = "ERROR!";
     public static final String TODOOK = "Todo ok!";

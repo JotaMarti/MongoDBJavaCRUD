@@ -3,7 +3,7 @@ package MODEL;
 import java.util.List;
 import org.json.JSONObject;
 
-public class extract {
+public class Extract {
 
     private String nombre;
     private String dni;
@@ -14,11 +14,11 @@ public class extract {
     private String nota;
     private String calle;
     private JSONObject direccion;
-    private estudiante[] array;
+    private Estudiante[] array;
 
-    public extract(List<String> resultados) {
+    public Extract(List<String> resultados) {
         
-        array = new estudiante[resultados.size()];
+        array = new Estudiante[resultados.size()];
 
         for (int i = 0; i < resultados.size(); i++) {
             
@@ -51,13 +51,13 @@ public class extract {
                 calle = "N/A";
             }
             
-            array[i] = new estudiante(nombre, dni, year, especialidad, email, ciudad, nota, calle);
+            array[i] = new Estudiante(nombre, dni, year, especialidad, email, ciudad, nota, calle);
 
         }
 
     }
     
-    public estudiante[] getArray(){
+    public Estudiante[] getArray(){
         return array;
     }
 

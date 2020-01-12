@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import org.bson.Document;
 
-public class find {
+public class Find {
 
     public static List<String> findOne(MongoCollection col, String k, String v) {
         List<String> resultados = new ArrayList<>();
@@ -28,9 +28,9 @@ public class find {
         return resultados;
     }
 
-    public static void findOneTabla(TableView<estudiante> e, ObservableList<estudiante> ol, TableColumn[] tc, String k, String v) {
-        estudiante[] array;
-        conectar myMongo = new conectar();
+    public static void findOneTabla(TableView<Estudiante> e, ObservableList<Estudiante> ol, TableColumn[] tc, String k, String v) {
+        Estudiante[] array;
+        Conectar myMongo = new Conectar();
         int valueInt;
         Double valueDouble;
         MongoCollection col = myMongo.getCollection();
@@ -59,15 +59,15 @@ public class find {
         
         
 
-        extract eResultados = new extract(resultados);
+        Extract eResultados = new Extract(resultados);
         array = eResultados.getArray();
 
-        pintar.refrescaPantallaView(e, array, ol, tc);
+        Pintar.refrescaPantallaView(e, array, ol, tc);
     }
 
     public static void findAll(TextArea ta) {
 
-        conectar myMongo = new conectar();
+        Conectar myMongo = new Conectar();
 
         MongoCollection col = myMongo.getCollection();
 
@@ -81,12 +81,12 @@ public class find {
             cursor.close();
         }
 
-        pintar.refrescaPantalla(ta, resultados);
+        Pintar.refrescaPantalla(ta, resultados);
     }
 
-    public static void findAllTable(TableView<estudiante> tableView, ObservableList<estudiante> ObservableList, TableColumn[] tableColumn, TextArea textArea) {
-        estudiante[] array;
-        conectar myMongo = new conectar();
+    public static void findAllTable(TableView<Estudiante> tableView, ObservableList<Estudiante> ObservableList, TableColumn[] tableColumn, TextArea textArea) {
+        Estudiante[] array;
+        Conectar myMongo = new Conectar();
 
         MongoCollection col = myMongo.getCollection();
 
@@ -100,11 +100,11 @@ public class find {
             cursor.close();
         }
 
-        extract eResultados = new extract(resultados);
+        Extract eResultados = new Extract(resultados);
         array = eResultados.getArray();
 
-        pintar.refrescaPantallaView(tableView, array, ObservableList, tableColumn);
-        pintar.refrescaPantalla(textArea, resultados);
+        Pintar.refrescaPantallaView(tableView, array, ObservableList, tableColumn);
+        Pintar.refrescaPantalla(textArea, resultados);
 
     }
 }

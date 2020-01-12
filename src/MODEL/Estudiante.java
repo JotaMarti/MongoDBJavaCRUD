@@ -4,7 +4,7 @@ package MODEL;
 import javafx.beans.property.SimpleStringProperty;
 
 
-public class estudiante {
+public class Estudiante {
     
     private SimpleStringProperty nombre;
     private SimpleStringProperty dni;
@@ -15,7 +15,7 @@ public class estudiante {
     private SimpleStringProperty nota;
     private SimpleStringProperty calle;
 
-    public estudiante(String nombre, String dni, String year, String especialidad, String email, String ciudad, String nota, String calle) {
+    public Estudiante(String nombre, String dni, String year, String especialidad, String email, String ciudad, String nota, String calle) {
         this.nombre = new SimpleStringProperty(nombre);
         this.dni = new SimpleStringProperty(dni);
         this.year = new SimpleStringProperty(year);

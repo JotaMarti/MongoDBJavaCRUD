@@ -9,12 +9,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import mongocrud.MongoCRUD;
 
-public class ventanas {
+public class Ventanas {
 
     private String fxmlName;
     private String tituloVentana;
 
-    public ventanas(String n, String v) {
+    public Ventanas(String n, String v) {
 
         fxmlName = n;
         tituloVentana = v;
@@ -34,7 +34,7 @@ public class ventanas {
             stage.setTitle(tituloVentana);
             stage.setResizable(false);
             stage.getIcons().add(new Image("/images/mongo.png"));
-            if(fxmlName.equals(textos.VENTANAMAIN)){
+            if(fxmlName.equals(Textos.VENTANAMAIN)){
                 stage.setOnCloseRequest(e -> Platform.exit());
             }
         } catch (IOException e) {

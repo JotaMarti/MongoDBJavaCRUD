@@ -3,7 +3,7 @@ package MODEL;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 
-public class insertar {
+public class Insertar {
 
     public static void insertaUno(String nom, String esp, String email, String ciudad, String a, String nota, String calle, String dni, MongoCollection col) {
         try {
@@ -16,7 +16,7 @@ public class insertar {
                         .append("email", email);
 
                 col.insertOne(document);
-                alertas.alertaInfo(textos.ALUMNOINSERTADOK);
+                Alertas.alertaInfo(Textos.ALUMNOINSERTADOK);
 
             } else if (nota.isEmpty()) {
                 Document document = new Document("nombre", nom)
@@ -28,7 +28,7 @@ public class insertar {
                         .append("email", email);
 
                 col.insertOne(document);
-                alertas.alertaInfo(textos.ALUMNOINSERTADOK);
+                Alertas.alertaInfo(Textos.ALUMNOINSERTADOK);
             } else if (calle.isEmpty()) {
                 Document document = new Document("nombre", nom)
                         .append("dni", dni)
@@ -39,7 +39,7 @@ public class insertar {
                         .append("notaMedia", Double.parseDouble(nota));
 
                 col.insertOne(document);
-                alertas.alertaInfo(textos.ALUMNOINSERTADOK);
+                Alertas.alertaInfo(Textos.ALUMNOINSERTADOK);
             } else {
                 Document document = new Document("nombre", nom)
                         .append("dni", dni)
@@ -51,12 +51,12 @@ public class insertar {
                         .append("notaMedia", Double.parseDouble(nota));
 
                 col.insertOne(document);
-                alertas.alertaInfo(textos.ALUMNOINSERTADOK);
+                Alertas.alertaInfo(Textos.ALUMNOINSERTADOK);
             }
         } catch (com.mongodb.MongoWriteException e) {
-            alertas.alertaError(textos.REVISAYEARDNI);
+            Alertas.alertaError(Textos.REVISAYEARDNI);
         } catch (java.lang.NumberFormatException e) {
-           alertas.alertaError(textos.REVISAYEARNOTA);
+           Alertas.alertaError(Textos.REVISAYEARNOTA);
             System.out.println(e);
         } catch (Exception e) {
             System.out.println(e);

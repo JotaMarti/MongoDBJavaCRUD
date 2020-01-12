@@ -8,7 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 
 
-public class pintar {
+public class Pintar {
     
     
     public static void refrescaPantalla(TextArea ta, List<String> resultados){
@@ -25,7 +25,7 @@ public class pintar {
         ta.setText(s);
     }
     
-    public static void refrescaPantallaView(TableView<estudiante> e, estudiante[] array, ObservableList<estudiante> ol, TableColumn[] tc){
+    public static void refrescaPantallaView(TableView<Estudiante> e, Estudiante[] array, ObservableList<Estudiante> ol, TableColumn[] tc){
         
         e.getColumns().clear();
         
