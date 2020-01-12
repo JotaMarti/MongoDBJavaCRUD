@@ -26,14 +26,15 @@ public class DeleteViewController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Quita el foco del textarea por defecto para que se pueda leer la leyenda
         textDniBorrar.setFocusTraversable(false);
     }
 
     @FXML
     private void clickBorrar(ActionEvent event) {
-        
+        //Recibo el dni del estudiante a borrar
         dni = textDniBorrar.getText();
-        
+        //Si el dni cumple el regex procedo a intentar borrar el alumno
         if (Check.checkDni(dni)) {
             
             Conectar myMongo = new Conectar();
@@ -44,7 +45,6 @@ public class DeleteViewController implements Initializable {
             
             Alertas.alertaError(Textos.ERRORDNI);
         }
-
         
     }
 

@@ -7,6 +7,7 @@ import MODEL.Textos;
 import MODEL.Ventanas;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,6 +40,7 @@ public class MainViewController implements Initializable {
     private TextArea mainTextField;
     private String key;
     private String value;
+    private String comparacion;
     @FXML
     private TableView<Estudiante> tableView;
     @FXML
@@ -60,6 +62,8 @@ public class MainViewController implements Initializable {
     public ObservableList<Estudiante> lista = FXCollections.observableArrayList();
     @FXML
     private ChoiceBox<String> mainCb;
+    @FXML
+    private ChoiceBox<String> comparacionCb;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -85,16 +89,38 @@ public class MainViewController implements Initializable {
         mainCb.getItems().add("notaMedia");
         mainCb.getItems().add("calle");
         mainCb.getItems().add("ciudad");
+        comparacionCb.getItems().add("Igual");
+        comparacionCb.getItems().add("Mayor que");
+        comparacionCb.getItems().add("Mayor o igual que");
+        comparacionCb.getItems().add("Menor que");
+        comparacionCb.getItems().add("Menor o igual que");
+        comparacionCb.getItems().add("Distinto");
+        comparacionCb.setDisable(true);
+        //Añadimos un eventlistener para actualizar el choicebox de las comparaciones depende del campo que se elija
+        mainCb.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> actualizaCb (newValue));
 
+    }
+    //Con este metodo simplemente activamos el camparacionCb solo si seleccionamos notamedia y año, sino lo deshabilitamos y seleccionamos igual por defecto
+    private void actualizaCb (String s){
+        if(s.equals("notaMedia") | s.equals("año")){
+            comparacionCb.setDisable(false);
+        } else {
+            comparacionCb.setDisable(true);
+            comparacionCb.getSelectionModel().selectFirst();
+        }
+        
     }
 
     @FXML
     private void clickBuscar(ActionEvent event) {
+        comparacion = (String) comparacionCb.getValue();
         key = (String) mainCb.getValue();
         value = textValue.getText();
         TableColumn[] arrayTablas = {columnDni, columnNombre, columnEmail, columnEspecialidad, columnYear, columnCiudad, columnCalle, columnNota};
         tableView.getItems().clear();
-        Find.findOneTabla(tableView, lista, arrayTablas, key, value);
+        Find.findOneTabla(tableView, lista, arrayTablas, key, value, comparacion, mainTextField);
 
     }
 

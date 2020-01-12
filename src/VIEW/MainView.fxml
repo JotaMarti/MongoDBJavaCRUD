@@ -10,8 +10,8 @@
    <children>
       <TextArea fx:id="mainTextField" editable="false" layoutX="8.0" layoutY="487.0" prefHeight="65.0" prefWidth="784.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
       <TextField fx:id="textValue" layoutX="115.0" layoutY="43.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="115.0" />
-      <Button fx:id="btnBuscar" layoutX="232.0" layoutY="22.0" mnemonicParsing="false" onAction="#clickBuscar" text="Buscar" AnchorPane.leftAnchor="237.0" />
-      <Button fx:id="btnBuscarTodos" layoutX="215.0" layoutY="56.0" mnemonicParsing="false" onAction="#clickBuscarTodos" text="Buscar todos" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="62.0" />
+      <Button fx:id="btnBuscar" layoutX="224.0" layoutY="43.0" mnemonicParsing="false" onAction="#clickBuscar" text="Buscar" AnchorPane.leftAnchor="224.0" />
+      <Button fx:id="btnBuscarTodos" layoutX="353.0" layoutY="75.0" mnemonicParsing="false" onAction="#clickBuscarTodos" text="Mostrar Todos" AnchorPane.leftAnchor="353.0" AnchorPane.topAnchor="75.0" />
       <Button fx:id="btnInsertar" layoutX="404.0" layoutY="43.0" mnemonicParsing="false" onAction="#clickInsertar" text="Insertar" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="43.0" />
       <Button fx:id="btnActualizar" layoutX="467.0" layoutY="43.0" mnemonicParsing="false" onAction="#clickActualizar" text="Actualizar" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="43.0" />
       <Button fx:id="btnBorrar" layoutX="407.0" layoutY="43.0" mnemonicParsing="false" onAction="#clickBorrar" text="Borrar" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="43.0" />
@@ -30,5 +30,6 @@
         </columns>
       </TableView>
       <ChoiceBox fx:id="mainCb" layoutX="4.0" layoutY="43.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="8.0" />
+      <ChoiceBox fx:id="comparacionCb" layoutX="40.0" layoutY="75.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
