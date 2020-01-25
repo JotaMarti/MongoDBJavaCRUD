@@ -1,6 +1,8 @@
 package MODEL;
 
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.json.JSONObject;
 
 public class Extract {
@@ -14,14 +16,15 @@ public class Extract {
     private String nota;
     private String calle;
     private JSONObject direccion;
-    private Estudiante[] array;
+    private Estudiante[] estudiantesArray;
+    private ObservableList<Estudiante> estudiantesObservableList;
 
     public Extract(List<String> resultados) {
-        
-        array = new Estudiante[resultados.size()];
+
+        estudiantesArray = new Estudiante[resultados.size()];
 
         for (int i = 0; i < resultados.size(); i++) {
-            
+
             nombre = null;
             dni = null;
             year = null;
@@ -50,15 +53,29 @@ public class Extract {
             } else {
                 calle = "N/A";
             }
-            
-            array[i] = new Estudiante(nombre, dni, year, especialidad, email, ciudad, nota, calle);
+
+            estudiantesArray[i] = new Estudiante(nombre, dni, year, especialidad, email, ciudad, nota, calle);
 
         }
+        buildOvservableList();
 
     }
-    
-    public Estudiante[] getArray(){
-        return array;
+
+    public Estudiante[] getArray() {
+        return estudiantesArray;
+    }
+
+    public ObservableList<Estudiante> getObservableList() {
+
+        return estudiantesObservableList;
+    }
+
+    public void buildOvservableList() {
+        estudiantesObservableList = FXCollections.observableArrayList();
+
+        for (int i = 0; i < estudiantesArray.length; i++) {
+            estudiantesObservableList.add(estudiantesArray[i]);
+        }
     }
 
 }

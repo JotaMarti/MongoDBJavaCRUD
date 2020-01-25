@@ -5,61 +5,67 @@ import org.bson.Document;
 
 public class Insertar {
 
-    public static void insertaUno(String nom, String esp, String email, String ciudad, String a, String nota, String calle, String dni, MongoCollection col) {
+    public static void insertaUno(String nombre, String especialidad, String email, String ciudad, String year, String nota, String calle, String dni, MongoCollection collection) {
+        nombre = nombre.toLowerCase();
+        especialidad = especialidad.toLowerCase();
+        email = email.toLowerCase();
+        ciudad = ciudad.toLowerCase();
+        calle = calle.toLowerCase();
+        dni = dni.toLowerCase();
         try {
             if (calle.isEmpty() & nota.isEmpty()) {
-                Document document = new Document("nombre", nom)
+                Document document = new Document("nombre", nombre)
                         .append("dni", dni)
-                        .append("año", Integer.parseInt(a))
-                        .append("especialidad", esp)
+                        .append("año", Integer.parseInt(year))
+                        .append("especialidad", especialidad)
                         .append("direccion", new Document("ciudad", ciudad))
                         .append("email", email);
 
-                col.insertOne(document);
+                collection.insertOne(document);
                 Alertas.alertaInfo(Textos.ALUMNOINSERTADOK);
 
             } else if (nota.isEmpty()) {
-                Document document = new Document("nombre", nom)
+                Document document = new Document("nombre", nombre)
                         .append("dni", dni)
-                        .append("año", Integer.parseInt(a))
-                        .append("especialidad", esp)
+                        .append("año", Integer.parseInt(year))
+                        .append("especialidad", especialidad)
                         .append("direccion", new Document("ciudad", ciudad)
                                 .append("calle", calle))
                         .append("email", email);
 
-                col.insertOne(document);
+                collection.insertOne(document);
                 Alertas.alertaInfo(Textos.ALUMNOINSERTADOK);
             } else if (calle.isEmpty()) {
-                Document document = new Document("nombre", nom)
+                Document document = new Document("nombre", nombre)
                         .append("dni", dni)
-                        .append("año", Integer.parseInt(a))
-                        .append("especialidad", esp)
+                        .append("año", Integer.parseInt(year))
+                        .append("especialidad", especialidad)
                         .append("direccion", new Document("ciudad", ciudad))
                         .append("email", email)
                         .append("notaMedia", Double.parseDouble(nota));
 
-                col.insertOne(document);
+                collection.insertOne(document);
                 Alertas.alertaInfo(Textos.ALUMNOINSERTADOK);
             } else {
-                Document document = new Document("nombre", nom)
+                Document document = new Document("nombre", nombre)
                         .append("dni", dni)
-                        .append("año", Integer.parseInt(a))
-                        .append("especialidad", esp)
+                        .append("año", Integer.parseInt(year))
+                        .append("especialidad", especialidad)
                         .append("direccion", new Document("ciudad", ciudad)
                                 .append("calle", calle))
                         .append("email", email)
                         .append("notaMedia", Double.parseDouble(nota));
 
-                col.insertOne(document);
+                collection.insertOne(document);
                 Alertas.alertaInfo(Textos.ALUMNOINSERTADOK);
             }
         } catch (com.mongodb.MongoWriteException e) {
             Alertas.alertaError(Textos.REVISAYEARDNI);
         } catch (java.lang.NumberFormatException e) {
-           Alertas.alertaError(Textos.REVISAYEARNOTA);
+            Alertas.alertaError(Textos.REVISAYEARNOTA);
             System.out.println(e);
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
     }

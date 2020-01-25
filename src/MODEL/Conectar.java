@@ -16,8 +16,8 @@ public class Conectar {
     String collection = "estudiantes";
 
     public Conectar() {
-        try {
 
+        try {
             mongoClient = MongoClients.create(uri);
             mongoDatabase = mongoClient.getDatabase(database);
             setCollection(collection);
@@ -27,8 +27,8 @@ public class Conectar {
             Alertas.alertaError(Textos.ERRORAUTH);
         } catch (com.mongodb.MongoCommandException e) {
             Alertas.alertaError(Textos.ERRORAUTH);
-        } catch (com.mongodb.MongoSocketOpenException e){
-            System.out.println(e);
+        } catch (com.mongodb.MongoSocketOpenException e) {
+            System.out.println(e.getMessage());
         }
 
     }

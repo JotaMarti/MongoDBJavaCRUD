@@ -1,132 +1,129 @@
 package MODEL;
 
-import com.mongodb.Block;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import static com.mongodb.client.model.Filters.*;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import org.bson.Document;
 
 public class Find {
 
-    public static List<String> findOne(MongoCollection col, String k, String v) {
-        List<String> resultados = new ArrayList<>();
-        Block<Document> printBlock = new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                resultados.add(document.toJson());
-            }
-        };
-
-        col.find(eq(k, v)).forEach(printBlock);
-
-        return resultados;
-    }
-
-    public static void findOneTabla(TableView<Estudiante> TableView, ObservableList<Estudiante> ObservableList, TableColumn[] TableColumn, String key, String value, String comparacion, TextArea textArea) {
+    public static String findOneTabla(TableView<Estudiante> TableView, ObservableList<Estudiante> ObservableList, String key, String value, String comparacion, TextArea textArea) {
         // Inicializo variables que voy a necesitar mas tarde
-        Estudiante[] estudianteArray;
         Conectar myMongo = new Conectar();
+        MongoCollection collection = myMongo.getCollection();
         int valueInt;
         Double valueDouble;
-        MongoCollection col = myMongo.getCollection();
-
+        Document myDoc = null;
         List<String> resultadosBrutos = new ArrayList<>();
-        Block<Document> printBlock = new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                resultadosBrutos.add(document.toJson());
-            }
-        };
+        boolean datosCorrectos = true;
+        String resultadoBusqueda = "";
+
         // null check
         if (comparacion == null) {
             comparacion = "";
         }
+        if (key == null) {
+            key = "";
+        }
+        value = value.toLowerCase();
 
         /*
         Para busquedas simples uso col.find(eq(key, value)).forEach(printBlock); pero esto no me sirve para la calle y la ciudad que estan dentro de direccion,
         ni tampoco para busquedas donde intervengan int o floats. Despues agregue unos switch para habilitar operadores de comparación en año y en notaMedia.
          */
-        if (key.equals("calle")) {
-            col.find(eq("direccion.calle", value)).forEach(printBlock);
-        } else if (key.equals("ciudad")) {
-            col.find(eq("direccion.ciudad", value)).forEach(printBlock);
-        } else if (key.equals("año")) {
-            valueInt = Integer.parseInt(value);
-            switch (comparacion) {
-                case "Igual":
-                    col.find(eq(key, valueInt)).forEach(printBlock);
-                    break;
-                case "Mayor que":
-                    col.find(gt(key, valueInt)).forEach(printBlock);
-                    break;
-                case "Mayor o igual que":
-                    col.find(gte(key, valueInt)).forEach(printBlock);
-                    break;
-                case "Menor que":
-                    col.find(lt(key, valueInt)).forEach(printBlock);
-                    break;
-                case "Menor o igual que":
-                    col.find(lte(key, valueInt)).forEach(printBlock);
-                    break;
-                case "Distinto":
-                    col.find(ne(key, valueInt)).forEach(printBlock);
-                    break;
-                default:
-                    col.find(eq(key, valueInt)).forEach(printBlock);
-                    break;
+        try {
+            if (key.equals("calle")) {
+                myDoc = (Document) collection.find(eq("direccion.calle", value)).first();
+            } else if (key.equals("ciudad")) {
+                myDoc = (Document) collection.find(eq("direccion.ciudad", value)).first();
+            } else if (key.equals("año")) {
+                valueInt = Integer.parseInt(value);
+                switch (comparacion) {
+                    case "Igual":
+                        myDoc = (Document) collection.find(eq(key, valueInt)).first();
+                        break;
+                    case "Mayor que":
+                        myDoc = (Document) collection.find(gt(key, valueInt)).first();
+                        break;
+                    case "Mayor o igual que":
+                        myDoc = (Document) collection.find(gte(key, valueInt)).first();
+                        break;
+                    case "Menor que":
+                        myDoc = (Document) collection.find(lt(key, valueInt)).first();
+                        break;
+                    case "Menor o igual que":
+                        myDoc = (Document) collection.find(lte(key, valueInt)).first();
+                        break;
+                    case "Distinto":
+                        myDoc = (Document) collection.find(ne(key, valueInt)).first();
+                        break;
+                    default:
+                        myDoc = (Document) collection.find(eq(key, valueInt)).first();
+                        break;
+                }
+            } else if (key.equals("notaMedia")) {
+                valueDouble = Double.parseDouble(value);
+                switch (comparacion) {
+                    case "Igual":
+                        myDoc = (Document) collection.find(eq(key, valueDouble)).first();
+                        break;
+                    case "Mayor que":
+                        myDoc = (Document) collection.find(gt(key, valueDouble)).first();
+                        break;
+                    case "Mayor o igual que":
+                        myDoc = (Document) collection.find(gte(key, valueDouble)).first();
+                        break;
+                    case "Menor que":
+                        myDoc = (Document) collection.find(lt(key, valueDouble)).first();
+                        break;
+                    case "Menor o igual que":
+                        myDoc = (Document) collection.find(lte(key, valueDouble)).first();
+                        break;
+                    case "Distinto":
+                        myDoc = (Document) collection.find(ne(key, valueDouble)).first();
+                        break;
+                    default:
+                        myDoc = (Document) collection.find(eq(key, valueDouble)).first();
+                        break;
+                }
+            } else {
+                myDoc = (Document) collection.find(eq(key, value)).first();
             }
+        } catch (NumberFormatException e) {
+            datosCorrectos = false;
+        }
 
-        } else if (key.equals("notaMedia")) {
-            valueDouble = Double.parseDouble(value);
-            switch (comparacion) {
-                case "Igual":
-                    col.find(eq(key, valueDouble)).forEach(printBlock);
-                    break;
-                case "Mayor que":
-                    col.find(gt(key, valueDouble)).forEach(printBlock);
-                    break;
-                case "Mayor o igual que":
-                    col.find(gte(key, valueDouble)).forEach(printBlock);
-                    break;
-                case "Menor que":
-                    col.find(lt(key, valueDouble)).forEach(printBlock);
-                    break;
-                case "Menor o igual que":
-                    col.find(lte(key, valueDouble)).forEach(printBlock);
-                    break;
-                case "Distinto":
-                    col.find(ne(key, valueDouble)).forEach(printBlock);
-                    break;
-                default:
-                    col.find(eq(key, valueDouble)).forEach(printBlock);
-                    break;
-            }
-
+        if (myDoc == null & datosCorrectos == true) {
+            resultadoBusqueda = Textos.MAINERRORNOENCONTRADO;
+            return resultadoBusqueda;//Alertas.alertaError(Textos.MAINERRORNOENCONTRADO);
+        } else if (datosCorrectos == false) {
+            resultadoBusqueda = Textos.REVISAYEARNOTA;
+            return resultadoBusqueda;
+            //Alertas.alertaError(Textos.REVISAYEARNOTA);
         } else {
-            col.find(eq(key, value)).forEach(printBlock);
+            resultadosBrutos.add(myDoc.toJson());
+            Extract eResultados = new Extract(resultadosBrutos);
+
+            Pintar.refrescaPantallaView(TableView, eResultados.getObservableList());
+            Pintar.refrescaPantalla(textArea, resultadosBrutos);
+            resultadoBusqueda = Textos.TODOOK;
+            return resultadoBusqueda;
         }
-
-        Extract resultados = new Extract(resultadosBrutos);
-        estudianteArray = resultados.getArray();
-
-        Pintar.refrescaPantallaView(TableView, estudianteArray, ObservableList, TableColumn);
-        Pintar.refrescaPantalla(textArea, resultadosBrutos);
     }
 
-    public static void findAll(TextArea ta) {
+    public static void findAllTable(TableView<Estudiante> tableView, ObservableList<Estudiante> ObservableList, TextArea textArea) {
 
         Conectar myMongo = new Conectar();
+        MongoCollection collection = myMongo.getCollection();
 
-        MongoCollection col = myMongo.getCollection();
         // Simplemente creamos un cursor que recorre toda la coleccion
         List<String> resultados = new ArrayList<>();
-        MongoCursor<Document> cursor = col.find().iterator();
+        MongoCursor<Document> cursor = collection.find().iterator();
         try {
             while (cursor.hasNext()) {
                 resultados.add(cursor.next().toJson());
@@ -135,29 +132,9 @@ public class Find {
             cursor.close();
         }
 
-        Pintar.refrescaPantalla(ta, resultados);
-    }
+        Extract extractedResultados = new Extract(resultados);
 
-    public static void findAllTable(TableView<Estudiante> tableView, ObservableList<Estudiante> ObservableList, TableColumn[] tableColumn, TextArea textArea) {
-        Estudiante[] array;
-        Conectar myMongo = new Conectar();
-
-        MongoCollection col = myMongo.getCollection();
-        // Simplemente creamos un cursor que recorre toda la coleccion
-        List<String> resultados = new ArrayList<>();
-        MongoCursor<Document> cursor = col.find().iterator();
-        try {
-            while (cursor.hasNext()) {
-                resultados.add(cursor.next().toJson());
-            }
-        } finally {
-            cursor.close();
-        }
-
-        Extract eResultados = new Extract(resultados);
-        array = eResultados.getArray();
-
-        Pintar.refrescaPantallaView(tableView, array, ObservableList, tableColumn);
+        Pintar.refrescaPantallaView(tableView, extractedResultados.getObservableList());
         Pintar.refrescaPantalla(textArea, resultados);
 
     }

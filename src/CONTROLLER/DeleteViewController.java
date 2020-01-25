@@ -1,4 +1,3 @@
-
 package CONTROLLER;
 
 import MODEL.Alertas;
@@ -13,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
+import javafx.stage.Stage;
 
 public class DeleteViewController implements Initializable {
 
@@ -23,7 +22,6 @@ public class DeleteViewController implements Initializable {
     private Button btnBorrar;
     private String dni;
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Quita el foco del textarea por defecto para que se pueda leer la leyenda
@@ -36,16 +34,19 @@ public class DeleteViewController implements Initializable {
         dni = textDniBorrar.getText();
         //Si el dni cumple el regex procedo a intentar borrar el alumno
         if (Check.checkDni(dni)) {
-            
+
             Conectar myMongo = new Conectar();
 
             Borrar.borrarUno(Textos.PRIMARYKEY, dni, myMongo.getCollection());
-            
+
+            Stage stage = (Stage) this.btnBorrar.getScene().getWindow();
+            stage.close();
+
         } else {
-            
+
             Alertas.alertaError(Textos.ERRORDNI);
         }
-        
+
     }
 
 }

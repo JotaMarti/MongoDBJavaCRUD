@@ -6,13 +6,11 @@ import static com.mongodb.client.model.Updates.set;
 
 public class Actualizar {
 
-    public static void actualizarUno(String k, String v, String kToUpd, String vToUpd, MongoCollection col) {
-        
-        Double nota;
+    public static void actualizarUno(String key, String value, String keyToUpdate, String valueToUpdate, MongoCollection collection) {
 
-        if (kToUpd.equals("calle")) {
+        if (keyToUpdate.equals("calle")) {
             try {
-                if (col.updateOne(eq(k, v), set("direccion.calle", vToUpd)).getModifiedCount() >= 1) {
+                if (collection.updateOne(eq(key, value), set("direccion.calle", valueToUpdate)).getModifiedCount() >= 1) {
                     Alertas.alertaInfo(Textos.TODOOK);
                 } else {
                     Alertas.alertaError(Textos.ERROR);
@@ -24,9 +22,9 @@ public class Actualizar {
                 Alertas.alertaError(Textos.ERROR);
                 System.out.println(e);
             }
-        } else if (kToUpd.equals("ciudad")) {
+        } else if (keyToUpdate.equals("ciudad")) {
             try {
-                if (col.updateOne(eq(k, v), set("direccion.ciudad", vToUpd)).getModifiedCount() >= 1) {
+                if (collection.updateOne(eq(key, value), set("direccion.ciudad", valueToUpdate)).getModifiedCount() >= 1) {
                     Alertas.alertaInfo(Textos.TODOOK);
                 } else {
                     Alertas.alertaError(Textos.ERROR);
@@ -38,10 +36,9 @@ public class Actualizar {
                 Alertas.alertaError(Textos.ERROR);
                 System.out.println(e);
             }
-        } else if (kToUpd.equals("notaMedia")) {
-            nota = Double.parseDouble(vToUpd);
+        } else if (keyToUpdate.equals("notaMedia")) {
             try {
-                if (col.updateOne(eq(k, v), set(kToUpd, nota)).getModifiedCount() >= 1) {
+                if (collection.updateOne(eq(key, value), set(keyToUpdate, Double.parseDouble(valueToUpdate))).getModifiedCount() >= 1) {
                     Alertas.alertaInfo(Textos.TODOOK);
                 } else {
                     Alertas.alertaError(Textos.ERROR);
@@ -55,7 +52,7 @@ public class Actualizar {
             }
         } else {
             try {
-                if (col.updateOne(eq(k, v), set(kToUpd, vToUpd)).getModifiedCount() >= 1) {
+                if (collection.updateOne(eq(key, value), set(keyToUpdate, valueToUpdate)).getModifiedCount() >= 1) {
                     Alertas.alertaInfo(Textos.TODOOK);
                 } else {
                     Alertas.alertaError(Textos.ERROR);
